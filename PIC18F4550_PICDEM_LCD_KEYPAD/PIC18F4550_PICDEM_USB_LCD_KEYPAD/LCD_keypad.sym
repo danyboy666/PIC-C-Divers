@@ -1,0 +1,187 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 code_public
+006-007 code_admin
+008-009 code_validation
+00A-00B input_read
+00C-00D temp_passw
+00E     try_msg
+00F     wrong_code.pulsar2
+00F-012 @SFTOI.P1
+00F     intrusion.pulsar1
+00F     lcd_init.i
+00F     code_gestion.response
+00F-010 read_from_EEPROM.adr
+00F     unlock.buzz_led_loop
+010     @PRINTF_U_91.P1
+010     @PSTRINGCN_91.P2
+010     unlock.door_opening
+010-011 code_gestion.temp_code
+010     lcd_init.@SCRATCH1
+010     intrusion.@SCRATCH1
+010     wrong_code.@SCRATCH1
+011     @PRINTF_U_91.P1
+011     unlock.door_closing
+011     read_from_EEPROM.i
+011     @PSTRINGCN_91.@SCRATCH1
+012     read_combination.x1
+012     @DIV88.P1
+012-013 read_from_EEPROM.val1
+012-013 write_to_EEPROM.adr
+012     unlock.@SCRATCH1
+012     @PSTRINGCN_91.@SCRATCH2
+012     code_gestion.@SCRATCH1
+013     read_combination.y1
+013     @DIV88.P1
+014-015 read_from_EEPROM.val2
+014-015 write_to_EEPROM.code
+014     read_combination.x2
+014     @DIV88.@SCRATCH1
+015     read_combination.y2
+016     read_combination.count_input
+016     write_to_EEPROM.j
+016-017 read_from_EEPROM.val3
+017-01A write_to_EEPROM.tableau
+017-018 read_combination.val1
+018-019 read_from_EEPROM.val4
+019-01A read_combination.val2
+01A-01B read_from_EEPROM.val_temp
+01B-01C read_combination.val3
+01B-01C write_to_EEPROM.divider
+01C-01D @ITOF.P1
+01C     read_from_EEPROM.@SCRATCH1
+01D-01E read_combination.val4
+01D     read_from_EEPROM.@SCRATCH2
+01D     write_to_EEPROM.@SCRATCH1
+01E     read_from_EEPROM.@SCRATCH3
+01E     write_to_EEPROM.@SCRATCH2
+01F-020 read_combination.touche
+01F-020 @DIV1616.P1
+01F     write_to_EEPROM.@SCRATCH3
+021-022 kp_read.temp
+021-022 @DIV1616.P1
+021     @PSTRINGC_91.@SCRATCH1
+021     read_combination.@SCRATCH1
+022     @PSTRINGC_91.@SCRATCH2
+022     read_combination.@SCRATCH2
+023     lcd_putc.c
+023     kp_read.@SCRATCH1
+023     @DIV1616.@SCRATCH1
+024     @delay_ms1.P1
+024     lcd_gotoxy.x
+024     kp_read.@SCRATCH2
+025     lcd_gotoxy.y
+025-026 @MUL1616.P1
+026     lcd_gotoxy.address
+027-028 @MUL1616.P1
+027     lcd_gotoxy.@SCRATCH1
+028     lcd_send_byte.address
+029     lcd_send_byte.n
+029     @MUL1616.@SCRATCH1
+02A     lcd_read_byte.low
+02A     lcd_send_byte.@SCRATCH1
+02B     lcd_send_nibble.n
+02B     lcd_read_byte.high
+02C     lcd_read_nibble.n
+02C     lcd_read_byte.@SCRATCH1
+02D     lcd_read_nibble.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+08A8  @delay_ms1
+0808  LCD_INIT_STRING
+0968  lcd_read_byte
+0916  lcd_read_nibble
+08D0  lcd_send_nibble
+09BA  lcd_send_byte
+09FA  lcd_init
+0BC8  lcd_gotoxy
+0BEA  lcd_putc
+0BBE  clr_display
+0E56  cursor_off
+0C4E  cursor_blink_on
+12C0  MAIN
+0B86  @SFTOI
+1034  unlock
+081C  @const133
+0C2E  @PSTRINGC_91
+0C5A  kp_read
+0A62  @MUL1616
+1246  intrusion
+082A  @const140
+0832  @const141
+0D72  read_combination
+0842  @const148
+0850  @const149
+11B4  wrong_code
+0852  @const151
+085E  @const152
+1104  @PSTRINGCN_91
+1124  @DIV88
+114C  @PRINTF_U_91
+0F6C  code_gestion
+086A  @const163
+0878  @const164
+088A  @const165
+089C  @const166
+0AB8  read_from_EEPROM
+0A80  @ITOF
+0EA2  write_to_EEPROM
+0E60  @DIV1616
+12C0  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    E:\Electro\Programmation\Programmations_PIC_C\PIC18F4550_Projects\PIC18F4550_PICDEM_LCD_KEYPAD\PIC18F4550_PICDEM_USB_LCD_KEYPAD\
+
+Project Files:
+    LCD_keypad.c
+    LCD_keypad.h
+    C:\Program Files\PICC\devices\18F4550.h
+    C:\Program Files\PICC\drivers\lcd.c
+    lcd_db666.h
+
+Units:
+    E:\Electro\Programmation\Programmations_PIC_C\PIC18F4550_Projects\PIC18F4550_PICDEM_LCD_KEYPAD\PIC18F4550_PICDEM_USB_LCD_KEYPAD\LCD_keypad (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      LCD_keypad.err
+    Ext Symbols: LCD_keypad.esym
+    INHX32:      LCD_keypad.hex
+    Symbols:     LCD_keypad.sym
+    List:        LCD_keypad.lst
+    Debug/COFF:  LCD_keypad.cof
+    Project:     LCD_keypad.PJT
+    Call Tree:   LCD_keypad.tre
+    Statistics:  LCD_keypad.sta

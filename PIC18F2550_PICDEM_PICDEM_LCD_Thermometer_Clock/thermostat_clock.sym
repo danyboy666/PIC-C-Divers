@@ -1,0 +1,203 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-00C receive_bytes
+00D     Hr10
+00E     Hr1
+00F     Min1
+010     Min10
+011.0   pm
+012-015 MAIN.temperature
+016-017 lcd_pic_clock.j
+016     lcd_init.i
+016-019 @FLT.P1
+016     ds1820_read.i
+016     @PSTRINGCN_91.P1
+016-019 @PRINTF_L32D_91FPFPF.P2
+017     ds1820_read.temp_var
+017     lcd_init.@SCRATCH1
+017     @PSTRINGCN_91.@SCRATCH1
+018     lcd_pic_clock.k
+018-01B ds1820_read.result
+018     @PSTRINGCN_91.@SCRATCH2
+019     Display_time.Min1
+019     lcd_pic_clock.@SCRATCH1
+019     TimeAdjust.@SCRATCH1
+01A     @PRINTF_L32D_91FPFPF.P1
+01A     Display_time.Min10
+01A-01D @FLT.P1
+01B     Display_time.Hr10
+01B     @PRINTF_L32D_91FPFPF.@SCRATCH1
+01C-01D @ITOF.P1
+01C     Display_time.Hr1
+01C     ds_reset.response
+01C-01D @MUL1616.P1
+01C     ds_write_byte.byte_to_send
+01C     @MUL88.P1
+01C     ds1820_read.@SCRATCH1
+01C     @PRINTF_L32D_91FPFPF.@SCRATCH2
+01D     ds_write_byte.i
+01D     @MUL88.P1
+01D     @PRINTF_U_91.P2
+01D     ds1820_read.@SCRATCH2
+01D     ds_reset.@SCRATCH1
+01D     Display_time.@SCRATCH1
+01D     @PSTRINGC_91.@SCRATCH1
+01D     @PRINTF_L32D_91FPFPF.@SCRATCH3
+01E-01F @MUL1616.P1
+01E     @PRINTF_U_91.P2
+01E     ds_read_byte.i
+01E     ds_write_byte.@SCRATCH1
+01E     @PSTRINGC_91.@SCRATCH2
+01E     @PRINTF_L32D_91FPFPF.@SCRATCH4
+01E     @FLT.@SCRATCH1
+01F     @DIV88.P1
+01F     ds_read_byte.byte_value
+01F     ds_write_bit.bit_to_send
+01F     @PRINTF_L32D_91FPFPF.@SCRATCH5
+01F     @FLT.@SCRATCH2
+020     @DIV88.P1
+020     ds_read_byte.bit_read
+020     @MUL1616.@SCRATCH1
+020     @PRINTF_L32D_91FPFPF.@SCRATCH6
+021.0   ds_read_bit.bit_value
+021     @DIV88.@SCRATCH1
+021     @PRINTF_L32D_91FPFPF.@SCRATCH7
+022     @delay_us1.P1
+022     @PRINTF_L32D_91FPFPF.@SCRATCH8
+023-026 @DIV3232.P1
+023     lcd_putc.c
+023-026 @FTOSD.P1
+023-026 @MULFF.P2
+024     lcd_gotoxy.x
+024     @delay_ms1.P1
+025     lcd_gotoxy.y
+026     lcd_gotoxy.address
+027-02A @DIV3232.P1
+027-02A @MULFF.P2
+027     lcd_gotoxy.@SCRATCH1
+027     @FTOSD.@SCRATCH1
+028     lcd_send_byte.address
+029     lcd_send_byte.n
+02A     lcd_read_byte.low
+02A     lcd_send_byte.@SCRATCH1
+02B     lcd_read_byte.high
+02B     lcd_send_nibble.n
+02B     @MULFF.@SCRATCH1
+02B     @DIV3232.@SCRATCH1
+02C     lcd_read_nibble.n
+02C     lcd_read_byte.@SCRATCH1
+02C     @MULFF.@SCRATCH2
+02C     @DIV3232.@SCRATCH2
+02D     lcd_read_nibble.@SCRATCH1
+02D     @MULFF.@SCRATCH3
+02D     @DIV3232.@SCRATCH3
+02E     @DIV3232.@SCRATCH4
+02F     @DIV3232.@SCRATCH5
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+086A  @delay_ms1
+0A30  @delay_us1
+0808  LCD_INIT_STRING
+092A  lcd_read_byte
+08D8  lcd_read_nibble
+0892  lcd_send_nibble
+097C  lcd_send_byte
+09BC  lcd_init
+0DBE  lcd_gotoxy
+0DE0  lcd_putc
+0A24  lcd_clear
+0CD8  ds1820_read
+0B42  @MUL88
+0B8E  @MUL1616
+0BAE  @ITOF
+0BE6  @MULFF
+0A50  ds_reset
+0A86  ds_write_bit
+0AAC  ds_write_byte
+0AD6  ds_read_bit
+0B0C  ds_read_byte
+128E  lcd_pic_clock
+1218  MinsRoutine
+11E2  HrsRoutine
+1230  TimeAdjust
+1244  EcouleTemps
+1128  Display_time
+081C  @const150
+107A  @PSTRINGC_91
+0820  @const152
+109A  @DIV88
+10C2  @PRINTF_U_91
+1360  MAIN
+0824  @const164
+0E24  @PSTRINGCN_91
+0E42  @FTOSD
+0E82  @DIV3232
+0EFC  @PRINTF_L32D_91FPFPF
+0830  @const175
+12EA  @FLT
+0834  @const179
+0842  @const180
+084C  @const181
+0856  @const182
+0860  @const183
+1360  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\db666\Desktop\PIC18F2550_PICDEM_PICDEM_LCD_Thermometer_Clock\
+
+Project Files:
+    thermostat_clock.c
+    thermostat_clock.h
+    ..\..\..\..\Program Files\PICC\Devices\18F4550.h
+    ..\..\..\..\Program Files\PICC\Drivers\lcd.c
+    lcd_db666.h
+    DS18B20.c
+    lcd_clock.c
+    lcd_clock.h
+
+Units:
+    C:\Users\db666\Desktop\PIC18F2550_PICDEM_PICDEM_LCD_Thermometer_Clock\thermostat_clock (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      thermostat_clock.err
+    Ext Symbols: thermostat_clock.esym
+    INHX32:      DS1820_THERMOSTAT_PROJECT.HEX
+    Symbols:     thermostat_clock.sym
+    List:        thermostat_clock.lst
+    Debug/COFF:  thermostat_clock.cof
+    Project:     thermostat_clock.PJT
+    Call Tree:   thermostat_clock.tre
+    Statistics:  thermostat_clock.sta

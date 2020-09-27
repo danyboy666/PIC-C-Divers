@@ -1,0 +1,152 @@
+///////////////////////////////////////////////////////////////////////////////
+/*****************************************************************************/
+/*                                                                           */
+/*                       Horloge numérique                                   */
+/*                                                                           */
+/*                Horloge avec Bloc afficheur LCD                            */ 
+/*                                                                           */
+/*  Ce programme utilise microcontrolleur PIC18F4550 avec sa fonctionalité   */
+/*  USB pour entrer en programmation(Bootloader).                            */ 
+/*                   Copyright Dany Ferron                    15/05/2011     */
+/*****************************************************************************/
+///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////Includes///////////////////////////////////////
+#include <lcd_clock.h>
+#include <lcd.c>
+///////////////////////////Variables de temps./////////////////////////////////
+BOOLEAN pm=0;
+int8 Hr10=1,Hr1=2,Min1=0,Min10=0;
+/////////////////////////Déclaration des sous-fonctions////////////////////////
+//Déclaration de la fonction pour la boucle d'affichage.
+void Display_time(int8 Min1,int8 Min10,int8 Hr10,int8 Hr1);
+void EcouleTemps(); //Déclaration de la fonction écoulement du temps.
+void MinsRoutine(); //Déclaration de la fonction routine des minutes.
+void HrsRoutine(); //Déclaration de la fonction Ajustement du temps.
+void TimeAdjust(); //Déclaration de la fonction routine des heures.
+///////////////////////////Programme principal.////////////////////////////////
+void main()
+{
+   //Variables local.
+   int16 j;
+   int8 k;
+   
+   lcd_init();//Initialisation du pilote d'affichage LCD.
+   //Faire la boucle tant que l'entré des minutes n'est pas activée.
+   do
+   {
+      //Boucle à compteur pour ajuster le temps à sa valeur réel(60 secondes).
+      for(j=1;j<=6000;j++)
+      {
+         //Appel de la fonction boucle d'affichage.
+         Display_time(Min1,Min10,Hr10,Hr1);
+         
+         //Si l'entré ajustement du temps est activé,changer le temps de la boucle et
+         //appel de la fonction ajustement du temps.
+         if(input(TIMESET)==0)
+         {
+            //Boucle à compteur pour accélérer l'écoulement du temps lors de l'ajustement.
+            for(k=1;k<=15;k++)
+            {
+               //Appel de la fonction boucle d'affichage.
+               Display_time(Min1,Min10,Hr10,Hr1);
+            };
+            TimeAdjust();//Appel de la fonction ajustement du temps.
+         };
+      };
+      //EcouleTemps();//Appel de la fonction écoulement du temps.
+      MinsRoutine();
+      HrsRoutine();
+   }//Fin de la boucle tant que.
+   while(input(TIMESET)==1);
+}
+////////////////////////Definition des sous-fonctions./////////////////////////
+///////////////////////Fonction d'ajustement des minutes.//////////////////////
+void MinsRoutine()
+{
+   //Faire incrémenter l'unité des minutes à chaque passage de la boucle
+   //d'affichage.
+   Min1++;
+   //Faire incrémenter la dizaine des minutes quand les unités sont à 10.
+   if(Min1==10)
+   {
+      Min1=0;
+      Min10++;
+      //Faire incrémenter les unités d'heures quand les dizaines de minutes sont à 60.
+   };
+   if(Min10==6)Min10=0;
+}
+///////////////////////Fonction d'ajustement des heures/.//////////////////////
+void HrsRoutine()
+{
+   Hr1++;
+   //Faire incrémenter la dizaine d'heure quand les unités d'heures sont à 10.
+   if((Hr10==15)&&(Hr1==10))
+   {
+      Hr10=1;
+      Hr1=0;
+   };
+   if((Hr10==1)&&(Hr1==2))pm=~pm;
+   //Remettre les unités d'heures à 1 quand la dizaine d'heure quand est à 1 et
+   //les unitées sont à 3.
+   
+   if((Hr10==1)&&(Hr1==3))
+   {
+      Hr1=1;
+      Hr10=15;
+   };
+}
+//////////////////////////Fonction ajustement du temps.///////////////////////
+void TimeAdjust()
+{
+   //Si appui du boutton des heures,faire monter les heures.
+   if(input(HRSET)==0)HrsRoutine();
+   //Si appui du boutton des minutes,faire monter les minutes.
+   if(input(MINSET)==0)MinsRoutine();
+}
+///////////////////////Fonction d'écoulement des minutes.//////////////////////
+void EcouleTemps()
+{
+   //Faire incrémenter l'unité des minutes à chaque passage de la boucle
+   //d'affichage.
+   Min1++;
+   //Faire incrémenter la dizaine des minutes quand les unités sont à 10.
+   if(Min1==10)
+   {
+      Min1=0;
+      Min10++;
+      //Faire incrémenter les unités d'heures quand les dizaines de minutes sont à 60.
+      if(Min10==6)
+      {
+         Min10=0;
+         Hr1++;
+      };
+      //Faire incrémenter la dizaine d'heure quand les unités d'heures sont à 10.
+      if((Hr10==15)&&(Hr1==10))
+      {
+         Hr10=1;
+         Hr1=0;
+      };
+      if((Hr10==1)&&(Hr1==2))pm=~pm;
+      
+      //Remettre les unités d'heures à 1 quand la dizaine d'heure quand est à 1 et
+      //les unitées sont à 3.
+      if((Hr10==1)&&(Hr1==3))
+      {
+         Hr1=1;
+         Hr10=15;
+      };
+   }
+}
+///////////////////////Fonction d'affichage du temps.//////////////////////////
+void Display_time(int8 Min1,int8 Min10,int8 Hr10,int8 Hr1)
+{
+   lcd_gotoxy(13,1);
+   if((Hr10==1)&&(Hr1==2)&&(pm==1))lcd_putc("pm");
+   if((Hr10==1)&&(Hr1==2)&&(pm==0))lcd_putc("am");
+   delay_ms(10);
+   lcd_gotoxy(1,1);//Placer le curseur à cette position.
+   //Condition si-alors/sinon pour faire afficher les dizaines d'heure ou non.
+   if(hr10==15)printf(lcd_putc,"Time:  %u:%u%u",Hr1,Min10,Min1);
+   else
+   printf(lcd_putc,"Time: %u%u:%u%u",hr10,Hr1,Min10,Min1);
+}

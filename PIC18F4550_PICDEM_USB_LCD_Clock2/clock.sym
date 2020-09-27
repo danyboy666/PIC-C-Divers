@@ -1,0 +1,119 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     seconds
+005     minutes
+006     hours
+007.0   ampm
+008     lcd_init.i
+008     Display_time.hours
+008     MAIN.@SCRATCH1
+008     TimeAdjust.@SCRATCH1
+009     Display_time.minutes
+009     lcd_init.@SCRATCH1
+00A     Display_time.seconds
+00B     @PRINTF_U_91.P1
+00B     @PSTRINGCN_91.P2
+00B     Display_time.@SCRATCH1
+00B     @PSTRINGC_91.@SCRATCH1
+00C     @PRINTF_U_91.P1
+00C     @PSTRINGCN_91.@SCRATCH1
+00C     @PSTRINGC_91.@SCRATCH2
+00D     @DIV88.P1
+00D     @PSTRINGCN_91.@SCRATCH2
+00E     @DIV88.P1
+00E     lcd_putc.c
+00F     @delay_ms1.P1
+00F     lcd_gotoxy.x
+00F     @DIV88.@SCRATCH1
+010     lcd_gotoxy.y
+011     lcd_gotoxy.address
+012     lcd_gotoxy.@SCRATCH1
+013     lcd_send_byte.address
+014     lcd_send_byte.n
+015     lcd_read_byte.low
+015     lcd_send_byte.@SCRATCH1
+016     lcd_send_nibble.n
+016     lcd_read_byte.high
+017     lcd_read_nibble.n
+017     lcd_read_byte.@SCRATCH1
+018     lcd_read_nibble.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0838  @delay_ms1
+0808  LCD_INIT_STRING
+08F8  lcd_read_byte
+08A6  lcd_read_nibble
+0860  lcd_send_nibble
+094A  lcd_send_byte
+098A  lcd_init
+09F2  lcd_gotoxy
+0A14  lcd_putc
+0BF6  MAIN
+0BAE  MinsRoutine
+0B9C  HrsRoutine
+0BBC  TimeAdjust
+0BD0  EcouleTemps
+0B26  Display_time
+081C  @const111
+0A58  @PSTRINGCN_91
+0A78  @DIV88
+0AA0  @PRINTF_U_91
+0830  @const120
+0B06  @PSTRINGC_91
+0834  @const122
+0BF6  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\db666\Desktop\
+
+Project Files:
+    clock.c
+    ..\..\..\Program Files\PICC\Devices\18F4550.h
+    ..\..\..\Program Files\PICC\Drivers\lcd.c
+
+Units:
+    C:\Users\db666\Desktop\clock (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      clock.err
+    Ext Symbols: clock.esym
+    INHX32:      clock.hex
+    Symbols:     clock.sym
+    List:        clock.lst
+    Debug/COFF:  clock.cof
+    Project:     clock.PJT
+    Call Tree:   clock.tre
+    Statistics:  clock.sta

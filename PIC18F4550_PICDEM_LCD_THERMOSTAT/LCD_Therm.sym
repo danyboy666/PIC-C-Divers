@@ -1,0 +1,172 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-00C receive_bytes
+00D-010 MAIN.temperature
+011-014 @FLT.P1
+011     @PSTRINGCN_91.P2
+011     ds1820_read.i
+011     lcd_init.i
+011-014 @PRINTF_L32D_91FPFPF.P1
+011     @PSTRINGC_91.@SCRATCH1
+012     ds1820_read.temp_var
+012     lcd_init.@SCRATCH1
+012     @PSTRINGCN_91.@SCRATCH1
+012     @PSTRINGC_91.@SCRATCH2
+013-016 ds1820_read.result
+013     @PSTRINGCN_91.@SCRATCH2
+015     @PRINTF_L32D_91FPFPF.P1
+015-018 @FLT.P2
+016     @PRINTF_L32D_91FPFPF.@SCRATCH1
+017     ds_write_byte.byte_to_send
+017     ds_reset.response
+017-018 @ITOF.P1
+017-018 @MUL1616.P2
+017     @MUL88.P3
+017     ds1820_read.@SCRATCH1
+017     @PRINTF_L32D_91FPFPF.@SCRATCH2
+018     @MUL88.P1
+018     ds_write_byte.i
+018     ds1820_read.@SCRATCH2
+018     ds_reset.@SCRATCH1
+018     @PRINTF_L32D_91FPFPF.@SCRATCH3
+019     ds_read_byte.i
+019-01A @MUL1616.P1
+019     ds_write_byte.@SCRATCH1
+019     @PRINTF_L32D_91FPFPF.@SCRATCH4
+019     @FLT.@SCRATCH1
+01A     ds_write_bit.bit_to_send
+01A     ds_read_byte.byte_value
+01A     @PRINTF_L32D_91FPFPF.@SCRATCH5
+01A     @FLT.@SCRATCH2
+01B     ds_read_byte.bit_read
+01B     @MUL1616.@SCRATCH1
+01B     @PRINTF_L32D_91FPFPF.@SCRATCH6
+01C.0   ds_read_bit.bit_value
+01C     @PRINTF_L32D_91FPFPF.@SCRATCH7
+01D     @delay_us1.P1
+01D     @PRINTF_L32D_91FPFPF.@SCRATCH8
+01E-021 @DIV3232.P1
+01E-021 @MULFF.P2
+01E-021 @FTOSD.P3
+01E     lcd_putc.c
+01F     @delay_ms1.P1
+01F     lcd_gotoxy.x
+020     lcd_gotoxy.y
+021     lcd_gotoxy.address
+022-025 @MULFF.P1
+022-025 @DIV3232.P2
+022     lcd_gotoxy.@SCRATCH1
+022     @FTOSD.@SCRATCH1
+023     lcd_send_byte.address
+024     lcd_send_byte.n
+025     lcd_read_byte.low
+025     lcd_send_byte.@SCRATCH1
+026     lcd_read_byte.high
+026     lcd_send_nibble.n
+026     @MULFF.@SCRATCH1
+026     @DIV3232.@SCRATCH1
+027     lcd_read_nibble.n
+027     lcd_read_byte.@SCRATCH1
+027     @MULFF.@SCRATCH2
+027     @DIV3232.@SCRATCH2
+028     lcd_read_nibble.@SCRATCH1
+028     @MULFF.@SCRATCH3
+028     @DIV3232.@SCRATCH3
+029     @DIV3232.@SCRATCH4
+02A     @DIV3232.@SCRATCH5
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0862  @delay_ms1
+0A28  @delay_us1
+0808  LCD_INIT_STRING
+0922  lcd_read_byte
+08D0  lcd_read_nibble
+088A  lcd_send_nibble
+0974  lcd_send_byte
+09B4  lcd_init
+0DB6  lcd_gotoxy
+0DD8  lcd_putc
+0A1C  lcd_clear
+0CD0  ds1820_read
+0B3A  @MUL88
+0B86  @MUL1616
+0BA6  @ITOF
+0BDE  @MULFF
+0A48  ds_reset
+0A7E  ds_write_bit
+0AA4  ds_write_byte
+0ACE  ds_read_bit
+0B04  ds_read_byte
+1108  MAIN
+081C  @const136
+0E1C  @PSTRINGCN_91
+0E3A  @FTOSD
+0E7A  @DIV3232
+0EF4  @PRINTF_L32D_91FPFPF
+1072  @FLT
+0828  @const150
+0836  @const151
+10E8  @PSTRINGC_91
+083A  @const153
+0844  @const154
+084E  @const155
+0858  @const156
+1108  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\db666\Desktop\PIC18F4550_PICDEM_LCD_THERMOSTAT\
+
+Project Files:
+    LCD_Therm.c
+    LCD_Therm.h
+    ..\..\..\..\Program Files\PICC\Devices\18F4550.h
+    ..\..\..\..\Program Files\PICC\Drivers\lcd.c
+    lcd_db666.h
+    DS18B20.c
+
+Units:
+    C:\Users\db666\Desktop\PIC18F4550_PICDEM_LCD_THERMOSTAT\LCD_Therm (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      LCD_Therm.err
+    Ext Symbols: LCD_Therm.esym
+    INHX32:      DS1820_THERMOSTAT_PROJECT.HEX
+    Symbols:     LCD_Therm.sym
+    List:        LCD_Therm.lst
+    Debug/COFF:  LCD_Therm.cof
+    Project:     LCD_Therm.PJT
+    Call Tree:   LCD_Therm.tre
+    Statistics:  LCD_Therm.sta

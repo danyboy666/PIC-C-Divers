@@ -1,0 +1,211 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-01E receive_bytes
+01F-022 Ticker
+023     Seconds
+024     Month
+025     Days
+026     Hours
+027     Minutes
+028-029 Year
+02A-02D MAIN.temperature
+02E     lcd_init.i
+02E     @PSTRINGCN_91.P1
+02E-031 @FLT.P2
+02E-02F @PRINTF_LU_91.P3
+02E     @PRINTF_U_91.P4
+02E     ds1820_read.i
+02E-031 @PRINTF_L32D_91FPFPF.P1
+02E     @PSTRINGC_91.@SCRATCH1
+02F     @PRINTF_U_91.P1
+02F     ds1820_read.temp_var
+02F     lcd_init.@SCRATCH1
+02F     @PSTRINGCN_91.@SCRATCH1
+02F     @PSTRINGC_91.@SCRATCH2
+030     @DIV88.P1
+030-033 ds1820_read.result
+030     @PSTRINGCN_91.@SCRATCH2
+030     @PRINTF_LU_91.@SCRATCH1
+031     @DIV88.P1
+031     @PRINTF_LU_91.@SCRATCH2
+032-035 @FLT.P1
+032     @PRINTF_L32D_91FPFPF.P2
+032     @DIV88.@SCRATCH1
+032     @PRINTF_LU_91.@SCRATCH3
+033     @PRINTF_LU_91.@SCRATCH4
+033     @PRINTF_L32D_91FPFPF.@SCRATCH1
+034-035 @ITOF.P1
+034     ds_reset.response
+034     @MUL88.P1
+034     ds_write_byte.byte_to_send
+034-035 @MUL1616.P1
+034     ds1820_read.@SCRATCH1
+034     @PRINTF_LU_91.@SCRATCH5
+034     @PRINTF_L32D_91FPFPF.@SCRATCH2
+035     ds_write_byte.i
+035     @MUL88.P1
+035     ds1820_read.@SCRATCH2
+035     ds_reset.@SCRATCH1
+035     @PRINTF_LU_91.@SCRATCH6
+035     @PRINTF_L32D_91FPFPF.@SCRATCH3
+036-037 @MUL1616.P1
+036     ds_read_byte.i
+036     ds_write_byte.@SCRATCH1
+036     @FLT.@SCRATCH1
+036     @PRINTF_LU_91.@SCRATCH7
+036     @PRINTF_L32D_91FPFPF.@SCRATCH4
+037     ds_write_bit.bit_to_send
+037     ds_read_byte.byte_value
+037     @FLT.@SCRATCH2
+037     @PRINTF_L32D_91FPFPF.@SCRATCH5
+038     ds_read_byte.bit_read
+038     @MUL1616.@SCRATCH1
+038     @PRINTF_L32D_91FPFPF.@SCRATCH6
+039.0   ds_read_bit.bit_value
+039     @PRINTF_L32D_91FPFPF.@SCRATCH7
+03A     @delay_us1.P1
+03A     @PRINTF_L32D_91FPFPF.@SCRATCH8
+03B-03E @DIV3232.P1
+03B-03E @MULFF.P2
+03B     lcd_putc.c
+03B-03E @FTOSD.P1
+03C     lcd_gotoxy.x
+03C     @delay_ms1.P1
+03D     lcd_gotoxy.y
+03E     lcd_gotoxy.address
+03F-042 @DIV3232.P1
+03F-042 @MULFF.P2
+03F     lcd_gotoxy.@SCRATCH1
+03F     @FTOSD.@SCRATCH1
+040     lcd_send_byte.address
+041     lcd_send_byte.n
+042     lcd_read_byte.low
+042     lcd_send_byte.@SCRATCH1
+043     lcd_read_byte.high
+043     lcd_send_nibble.n
+043     @MULFF.@SCRATCH1
+043     @DIV3232.@SCRATCH1
+044     lcd_read_nibble.n
+044     lcd_read_byte.@SCRATCH1
+044     @MULFF.@SCRATCH2
+044     @DIV3232.@SCRATCH2
+045     lcd_read_nibble.@SCRATCH1
+045     @MULFF.@SCRATCH3
+045     @DIV3232.@SCRATCH3
+046     @DIV3232.@SCRATCH4
+047     @DIV3232.@SCRATCH5
+048     TIMER1_isr.@SCRATCH1
+049     TIMER1_isr.@SCRATCH2
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+09A2  @delay_ms1
+0B5C  @delay_us1
+0896  LCD_INIT_STRING
+0A62  lcd_read_byte
+0A10  lcd_read_nibble
+09CA  lcd_send_nibble
+0AB4  lcd_send_byte
+0AF4  lcd_init
+0F60  lcd_gotoxy
+0F82  lcd_putc
+0E04  ds1820_read
+0C6E  @MUL88
+0CBA  @MUL1616
+0CDA  @ITOF
+0D12  @MULFF
+0B7C  ds_reset
+0BB2  ds_write_bit
+0BD8  ds_write_byte
+0C02  ds_read_bit
+0C38  ds_read_byte
+098E  Initialize_RTC
+08B4  TIMER1_isr
+1380  MAIN
+0EEA  @FLT
+095C  @const141
+0FC6  @PSTRINGCN_91
+0FE4  @DIV88
+100C  @PRINTF_U_91
+1072  @PRINTF_LU_91
+0970  @const153
+1126  @FTOSD
+1166  @DIV3232
+11E0  @PRINTF_L32D_91FPFPF
+097C  @const162
+098A  @const163
+135E  @PSTRINGC_91
+1380  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\db666\Desktop\PIC18F4550_PICDEM_LCD_ZERO_DRIFT_RTC\
+
+Project Files:
+    RTC clock.c
+    ..\..\..\..\Program Files\PICC\Devices\18F4550.h
+    ..\..\..\..\Program Files\PICC\Drivers\lcd.c
+    DS18B20.c
+
+Units:
+    C:\Users\db666\Desktop\PIC18F4550_PICDEM_LCD_ZERO_DRIFT_RTC\RTC clock (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      RTC clock.err
+    Ext Symbols: RTC clock.esym
+    INHX32:      RTC clock.hex
+    Symbols:     RTC clock.sym
+    List:        RTC clock.lst
+    Debug/COFF:  RTC clock.cof
+    Project:     RTC clock.PJT
+    Call Tree:   RTC clock.tre
+    Statistics:  RTC clock.sta

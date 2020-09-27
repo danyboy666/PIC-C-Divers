@@ -1,0 +1,116 @@
+#define InputAB (((input_c() & 0b00001111) * 0x100) + input_b())
+
+
+#define kp_0 0b0000111111111110
+#define kp_1 0b0000111111111101
+#define kp_2 0b0000111111111011
+#define kp_3 0b0000111111110111
+#define kp_4 0b0000111111101111
+#define kp_5 0b0000111111011111
+#define kp_6 0b0000111110111111
+#define kp_7 0b0000111101111111
+#define kp_8 0b0000111011111111
+#define kp_9 0b0000110111111111
+#define kp_ast 0b0000101111111111
+#define kp_car 0b0000011111111111
+
+#define ledV PIN_A0
+#define ledR PIN_A1
+#define buzzer PIN_A2
+
+
+
+
+void sub2();
+
+
+int1 passwordValid;
+int8 i,j,k;
+int16 inputRead;
+
+
+#define PASSWORD_LENGTH 4
+int16 password[PASSWORD_LENGTH] = {kp_1, kp_2, kp_3, kp_4}, userInput[PASSWORD_LENGTH] = {0,0,0,0};
+int8 inputCount=0;
+
+void main() 
+{
+
+    do{
+
+        if (InputAB<0xFFF)
+        {   
+            inputRead=InputAB;
+           
+           if(inputCount < PASSWORD_LENGTH) 
+    {
+        userInput[inputCount] = inputRead;
+        inputCount++;
+    }
+    else 
+    {
+        passwordValid = true;
+        for(k=0; k < PASSWORD_LENGTH; k++) 
+        {
+            if(userInput[k] != password[k]) 
+            {
+                passwordValid = false;
+                
+                
+            }
+            
+            userInput[k] = 0;
+        }
+        inputCount = 0; 
+        
+
+
+        if(passwordValid) 
+            
+            sub2();
+        
+    }
+            output_HIGH(buzzer);
+            output_HIGH(ledR);
+        }
+        else 
+        {
+            output_LOW(buzzer);
+            output_LOW(ledR);
+        }
+
+    } while(true);
+}
+
+
+void sub2()
+{
+
+    for (i=0;i<=3;i++)
+    {
+        output_HIGH(buzzer);
+        output_LOW(ledR);
+        delay_ms(100);
+        output_LOW(buzzer);
+        output_HIGH(ledR);
+        delay_ms(50);
+    };
+
+    output_LOW(ledR);
+    output_HIGH(ledV);
+    delay_ms(10000);
+    
+
+    for (j=0;j<=1;j++){
+        output_HIGH(buzzer);
+        output_LOW(ledV);
+        delay_ms(100);
+        output_LOW(buzzer);
+        output_HIGH(ledV);
+        delay_ms(50);
+    };
+
+    output_LOW(ledV);
+    output_HIGH(ledR);
+    
+}
